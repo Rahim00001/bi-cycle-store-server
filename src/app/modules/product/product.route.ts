@@ -7,7 +7,9 @@ const router = express.Router();
 router.post('/create-bicycle', BiCycleController.createBiCycle);
 
 // get all available bicycles
-router.get('/', BiCycleController.getAllBiCycles)
+router.get('/', BiCycleController.getAllBiCycles);
 
+// get specific bicycle
+router.get('/:serialNo', BiCycleController.getSingleBiCycle);
 
 export const BiCycleRoute = router;
