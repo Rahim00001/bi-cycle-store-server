@@ -13,5 +13,5 @@ export type TBiCycle = {
 };
 
 export interface BicycleModel extends Model<TBiCycle> {
-  isUserExists(id: string): Promise<TBiCycle | null>;
+  isBiCycleExists(serialNo: string): Promise<TBiCycle | null>;
 }

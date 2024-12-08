@@ -1,7 +1,8 @@
 import { Schema, model } from 'mongoose';
 import { BicycleModel, TBiCycle } from './product.interface';
 
-const biCycleSchema = new Schema<TBiCycle, BicycleModel>({
+const biCycleSchema = new Schema<TBiCycle, BicycleModel>(
+{
   serialNo: {
     type: String,
     required: [true, 'Serial number must be given'],
@@ -44,6 +45,15 @@ const biCycleSchema = new Schema<TBiCycle, BicycleModel>({
     type: Boolean,
     default: true,
   },
-});
+},
+{
+    timestamps: true, // Enable timestamps
+}
+);
+
+biCycleSchema.statics.isBiCycleExists = async function (id: string) {
+    const existingBiCycle = await BiCycle.findOne({ id });
+    return existingBiCycle;
+  };
 
 export const BiCycle = model<TBiCycle, BicycleModel>('BiCycle', biCycleSchema);
