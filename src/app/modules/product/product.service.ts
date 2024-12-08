@@ -10,6 +10,12 @@ const createBiCycleIntoDB = async (biCycleData: TBiCycle) => {
     return result;
 };
 
+const getAllBiCycleFromDB = async () => {
+    const result = await BiCycle.find();
+    return result;
+  };
+
 export const BicycleServices = {
     createBiCycleIntoDB,
+    getAllBiCycleFromDB,
 }

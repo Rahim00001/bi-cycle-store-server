@@ -27,6 +27,25 @@ const createBiCycle = async (req: Request, res: Response) => {
     }
   };
 
+  const getAllBiCycles = async (req: Request, res: Response) => {
+    try {
+      const result = await BicycleServices.getAllBiCycleFromDB();
+  
+      res.status(200).json({
+        success: true,
+        message: 'BiCycle retrieved successfully',
+        data: result,
+      });
+    } catch (err: any) {
+      res.status(500).json({
+        success: false,
+        message: err.message || 'Somthing went wrong',
+        error: err,
+      });
+    }
+  };
+
   export const BiCycleController = {
     createBiCycle,
+    getAllBiCycles,
   };

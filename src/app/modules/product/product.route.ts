@@ -3,7 +3,11 @@ import { BiCycleController } from './product.controller';
 
 const router = express.Router();
 
-// will call controller function
+// create a new bicycle
 router.post('/create-bicycle', BiCycleController.createBiCycle);
+
+// get all available bicycles
+router.get('/', BiCycleController.getAllBiCycles)
+
 
 export const BiCycleRoute = router;
