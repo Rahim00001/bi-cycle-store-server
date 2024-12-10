@@ -6,7 +6,7 @@ const biCycleSchema = new Schema<TBiCycle, BicycleModel>(
     serialNo: {
       type: String,
       required: [true, 'Serial number must be given'],
-      maxlength: [6, 'Serial number can not be more than 20 characters'],
+      maxlength: [6, 'Serial number can not be more than 6 characters'],
       unique: true,
     },
     name: {
@@ -30,6 +30,7 @@ const biCycleSchema = new Schema<TBiCycle, BicycleModel>(
         values: ['Mountain', 'Road', 'Hybrid', 'BMX', 'Electric'],
         message: '{VALUE} is not a valid bicycle type',
       },
+      required: [true, 'BiCycle type must be given'],
       trim: true,
     },
     description: {
