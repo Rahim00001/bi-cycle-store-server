@@ -12,4 +12,7 @@ router.get('/', BiCycleController.getAllBiCycles);
 // get specific bicycle
 router.get('/:serialNo', BiCycleController.getSingleBiCycle);
 
+// deleted specific bicycle
+router.delete('/:serialNo', BiCycleController.deleteSingleBiCycle);
+
 export const BiCycleRoute = router;

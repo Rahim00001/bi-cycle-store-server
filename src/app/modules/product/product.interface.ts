@@ -10,6 +10,7 @@ export type TBiCycle = {
   description: string;
   quantity: number;
   inStock: boolean;
+  isDeleted: boolean;
 };
 
 export interface BicycleModel extends Model<TBiCycle> {

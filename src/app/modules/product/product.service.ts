@@ -16,7 +16,16 @@ const getAllBiCycleFromDB = async () => {
 };
 
 const getSingleBiCycleFromDB = async (serialNo: string) => {
-  const result = await BiCycle.findOne({ serialNo });
+  // const result = await BiCycle.findOne({ serialNo });
+
+  const result = await BiCycle.aggregate([{ $match: { serialNo: serialNo } }]);
+
+  return result;
+};
+
+// delete a bicycle from DB
+const deleteSingleBiCycleFromDB = async (serialNo: string) => {
+  const result = await BiCycle.updateOne({ serialNo }, { isDeleted: true });
   return result;
 };
 
@@ -24,4 +33,5 @@ export const BicycleServices = {
   createBiCycleIntoDB,
   getAllBiCycleFromDB,
   getSingleBiCycleFromDB,
+  deleteSingleBiCycleFromDB,
 };

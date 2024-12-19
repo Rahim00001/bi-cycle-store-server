@@ -65,8 +65,29 @@ const getSingleBiCycle = async (req: Request, res: Response) => {
   }
 };
 
+const deleteSingleBiCycle = async (req: Request, res: Response) => {
+  try {
+    const { serialNo } = req.params;
+
+    const result = await BicycleServices.deleteSingleBiCycleFromDB(serialNo);
+
+    res.status(200).json({
+      success: true,
+      message: 'BiCycle deleted successfully',
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message || 'Somthing went wrong',
+      error: err,
+    });
+  }
+};
+
 export const BiCycleController = {
   createBiCycle,
   getAllBiCycles,
   getSingleBiCycle,
+  deleteSingleBiCycle,
 };

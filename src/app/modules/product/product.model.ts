@@ -46,11 +46,34 @@ const biCycleSchema = new Schema<TBiCycle, BicycleModel>(
       type: Boolean,
       default: true,
     },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true, // Enable timestamps
   },
 );
+
+// Query middlewares
+biCycleSchema.pre('find', function (next) {
+  this.find({ isDeleted: { $ne: true } });
+
+  next();
+});
+
+biCycleSchema.pre('findOne', function (next) {
+  this.find({ isDeleted: { $ne: true } });
+
+  next();
+});
+
+biCycleSchema.pre('aggregate', function (next) {
+  this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
+
+  next();
+});
 
 biCycleSchema.statics.isBiCycleExists = async function (id: string) {
   const existingBiCycle = await BiCycle.findOne({ id });
